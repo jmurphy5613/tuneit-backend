@@ -68,9 +68,9 @@ const getUserBySpotifyIdHandler = async (request: Hapi.Request, h: Hapi.Response
         })
 
         if (!user) {
-            return Boom.notFound('user not found')
+            return h.response({ message: 'no user with that id' }).code(200)
         }
-        
+
         return h.response(user).code(200)
     } catch (err) {
         console.log(err)
