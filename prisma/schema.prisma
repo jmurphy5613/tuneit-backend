@@ -26,6 +26,8 @@ model HistoryItem {
     albumArt String
     uri      String
     duration Int
-    user     User     @relation(fields: [userId], references: [id])
+    liked    Boolean  
+    user     User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
     userId   Int
 }
+ 
