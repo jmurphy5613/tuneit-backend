@@ -57,6 +57,7 @@ const createUserHandler = async (request: Hapi.Request, h: Hapi.ResponseToolkit)
             data: {
                 spotifyId: payload.spotifyId,
                 displayName: payload.displayName,
+                playlistId: payload.playlistId,
             }
         })
         return h.response(newUser).code(200)
