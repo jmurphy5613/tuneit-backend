@@ -58,6 +58,7 @@ const createUserHandler = async (request: Hapi.Request, h: Hapi.ResponseToolkit)
                 spotifyId: payload.spotifyId,
                 displayName: payload.displayName,
                 playlistId: payload.playlistId,
+                profilePicture: payload.profilePicture
             }
         })
         return h.response(newUser).code(200)

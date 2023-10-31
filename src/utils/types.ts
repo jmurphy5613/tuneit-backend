@@ -1,7 +1,8 @@
 export interface CreateUserInput  {
     spotifyId: string,
     displayName: string,
-    playlistId: string
+    playlistId: string,
+    profilePicture: string
 }
 
 export interface CreateHistoryItemInput {

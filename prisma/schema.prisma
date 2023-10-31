@@ -15,6 +15,7 @@ model User {
     spotifyId   String        @unique
     displayName String
     playlistId  String
+    profilePicture String
     history     HistoryItem[]
 }
 
