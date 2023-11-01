@@ -19,6 +19,11 @@ const userPlugin = {
             },
             {
                 method: 'GET',
+                path: '/users/getById/{userId}',
+                handler: getUserByIdHandler
+            },
+            {
+                method: 'GET',
                 path: '/users/getBySpotifyId/{spotifyId}',
                 handler: getUserBySpotifyIdHandler
             },
@@ -65,6 +70,28 @@ const createUserHandler = async (request: Hapi.Request, h: Hapi.ResponseToolkit)
     } catch (err) {
         console.log(err)
         return Boom.badImplementation('failed to create user')
+    }
+}
+
+const getUserByIdHandler = async (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
+    const { prisma } = request.server.app
+    const id = request.params.userId
+
+    try {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: parseInt(id)
+            }
+        })
+
+        if (!user) {
+            return h.response({ message: 'no user with that id' }).code(200)
+        }
+
+        return h.response(user).code(200)
+    } catch (err) {
+        console.log(err)
+        return Boom.badImplementation('failed to get user')
     }
 }
 
